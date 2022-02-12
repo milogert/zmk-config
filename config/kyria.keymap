@@ -31,10 +31,10 @@
 // | SHIFT |  Z  |  X  |  C   |  V   |  B   | L SHIFT | L SHIFT |  | L SHIFT | L SHIFT |  N   |  M    |  ,    |  .   |   /   | CTRL |
 //                     | GUI  | DEL  | RET  |  SPACE  |   ESC   |  |   RET   |  SPACE  | TAB  | BSPC  | R-ALT |
       bindings = <
-  &lt NAV TAB     &kp Q &kp W &kp E    &kp R    &kp T                                                               &kp Y    &kp U       &kp I     &kp O    &kp P    &kp BSLH
-  &kp LCTL        &kp A &kp S &kp D    &kp F    &kp G                                                               &kp H    &kp J       &kp K     &kp L    &kp SEMI &kp SQT
-  &mt LSHIFT LPAR &kp Z &kp X &kp C    &kp V    &kp B    &mt LCTL LBKT &lt NAV ESC    &lt SYMBOLS TAB &mt RCTL RBKT &kp N    &kp M       &kp COMMA &kp DOT  &kp FSLH &mt RSHIFT RPAR
-                              &kp C_PP &kp LALT &kp LGUI &kp SPACE     &mo SYMBOLS    &mo NAV         &kp RET       &kp BSPC &sl SYMBOLS &kp C_MUTE
+        &lt NAV TAB     &kp Q &kp W &kp E    &kp R    &kp T                                                               &kp Y    &kp U       &kp I     &kp O    &kp P    &kp BSLH
+        &kp LCTL        &kp A &kp S &kp D    &kp F    &kp G                                                               &kp H    &kp J       &kp K     &kp L    &kp SEMI &kp SQT
+        &mt LSHIFT LPAR &kp Z &kp X &kp C    &kp V    &kp B    &mt LCTL LBKT &lt NAV ESC    &lt SYMBOLS TAB &mt RCTL RBKT &kp N    &kp M       &kp COMMA &kp DOT  &kp FSLH &mt RSHIFT RPAR
+                                    &kp C_PP &kp LALT &kp LGUI &kp SPACE     &mo SYMBOLS    &mo NAV         &kp RET       &kp BSPC &sl SYMBOLS &kp C_MUTE
       >;
 
       sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN>;
@@ -62,12 +62,12 @@
 
     // Navigation
     {
+      /* XXXXXXX, XXXXXXX, KC_BTN2, KC_BTN1, KC_DEL,  KC_BSPC,                                     KC_MS_L, KC_MS_D, KC_MS_U, KC_MS_R, XXXXXXX, XXXXXXX, */
+      /* _______, XXXXXXX, XXXXXXX, XXXXXXX, KC_ENT,  XXXXXXX,                                     KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, XXXXXXX, XXXXXXX, */
+      /* _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, _______, _______, _______, _______, KC_HOME, KC_PGDN, KC_PGUP, KC_END,  XXXXXXX, _______, */
+      /*                            KC_PGUP, _______, _______, _______, XXXXXXX, XXXXXXX, _______, _______, _______, KC_PGDN */
+      // Mouse support is missing from the above one (QMK format).
       bindings = <
-        /* XXXXXXX, XXXXXXX, KC_BTN2, KC_BTN1, KC_DEL,  KC_BSPC,                                     KC_MS_L, KC_MS_D, KC_MS_U, KC_MS_R, XXXXXXX, XXXXXXX, */
-        /* _______, XXXXXXX, XXXXXXX, XXXXXXX, KC_ENT,  XXXXXXX,                                     KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, XXXXXXX, XXXXXXX, */
-        /* _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, _______, _______, _______, _______, KC_HOME, KC_PGDN, KC_PGUP, KC_END,  XXXXXXX, _______, */
-        /*                            KC_PGUP, _______, _______, _______, XXXXXXX, XXXXXXX, _______, _______, _______, KC_PGDN */
-        // Mouse support is missing from the above one (QMK format).
         &none  &none &none &none     &kp DEL &kc BSPC                                &none    &none     &none     &none    &none &none
         &trans &none &none &none     &kp RET &none                                   &kp LEFT &kp DOWN  &kp UP    &kp RGHT &none &none
         &trans &none &none &none     &none   &none  &trans &trans      &trans &trans &kp HOME &kp PG_DN &kp PG_UP &kp END  &none &trans
@@ -78,7 +78,7 @@
     // Utils
     {
       bindings = <
-        &none &none           &none           &none           &none           &none                                        &none    &kp C_MUTE &kp C_VOL_UP &none      &none &none/*RESET*/
+        &none &none           &none           &none           &none           &none                                        &none    &kp C_MUTE &kp C_VOL_UP &none      &none &none
         &none &rgb_ug RGB_TOG &rgb_ug RGB_SAI &rgb_ug RGB_HUI &rgb_ug RGB_BRI &rgb_ug RGB_EFF                              &none    &kp C_PREV &kp C_PP     &kp C_NEXT &none &none
         &none &none           &rgb_ug RGB_SAD &rgb_ug RGB_HUD &rgb_ug RGB_BRD &rgb_ug RGB_EFR &none &none      &none &none &to MATH &none      &kp C_VOL_DN &none      &none &none
                                                       &none       &none       &none           &none &none      &none &none &none    &none      &none
