@@ -62,7 +62,7 @@
       /*                            KC_PGUP, _______, _______, _______, XXXXXXX, XXXXXXX, _______, _______, _______, KC_PGDN */
       // Mouse support is missing from the above one (QMK format).
       bindings = <
-        &none  &none &none &none     &kp DEL &kc BSPC                                &none    &none     &none     &none     &none &none
+        &none  &none &none &none     &kp DEL &kp BSPC                                &none    &none     &none     &none     &none &none
         &trans &none &none &none     &kp RET &none                                   &kp LEFT &kp DOWN  &kp UP    &kp RIGHT &none &none
         &trans &none &none &none     &none   &none  &trans &trans      &trans &trans &kp HOME &kp PG_DN &kp PG_UP &kp END   &none &trans
                            &kp PG_UP &trans  &trans &trans &none       &none  &trans &trans   &trans    &kp PG_DN
