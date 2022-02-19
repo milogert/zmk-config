@@ -28,8 +28,8 @@
 // Aliases.
 
 // None/Trans
-#define _____ _____
-#define t____ t____
+#define _____ &none
+#define t____ &trans
 
 / {
   keymap {
