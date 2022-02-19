@@ -7,6 +7,7 @@
 #include <behaviors.dtsi>
 #include <dt-bindings/zmk/keys.h>
 #include <dt-bindings/zmk/bt.h>
+#include <dt-bindings/zmk/ext_power.h>
 
 #define DEFAULT 0
 #define MATH    1
@@ -15,9 +16,20 @@
 #define UTIL    4
 #define MACROS  5
 
+// Sticky layer config. Release automatically after 5 seconds
 &sl {
   release-after-ms = <5000>;
 };
+
+// Encoder resolutions. Make the spin happen faster.
+&left_encoder   { resolution = <2>; };
+&right_encoder  { resolution = <2>; };
+
+// Aliases.
+
+// None/Trans
+#define _____ _____
+#define t____ t____
 
 / {
   keymap {
@@ -25,32 +37,32 @@
 
     default_layer {
       bindings = <
-        &lt NAV TAB     &kp Q &kp W &kp E    &kp R    &kp T                                                               &kp Y    &kp U       &kp I     &kp O    &kp P    &kp BSLH
-        &kp LCTL        &kp A &kp S &kp D    &kp F    &kp G                                                               &kp H    &kp J       &kp K     &kp L    &kp SEMI &kp SQT
-        &mt LSHIFT LPAR &kp Z &kp X &kp C    &kp V    &kp B    &mt LCTL LBKT &lt NAV ESC    &lt SYMBOLS TAB &mt RCTL RBKT &kp N    &kp M       &kp COMMA &kp DOT  &kp FSLH &mt RSHIFT RPAR
-                                    &kp C_PP &kp LALT &kp LGUI &kp SPACE     &mo SYMBOLS    &mo NAV         &kp RET       &kp BSPC &sl SYMBOLS &kp C_MUTE
+        &lt NAV TAB     &kp Q &kp W &kp E    &kp R    &kp T                                                               &kp Y    &kp U      &kp I     &kp O    &kp P    &kp BSLH
+        &kp LCTL        &kp A &kp S &kp D    &kp F    &kp G                                                               &kp H    &kp J      &kp K     &kp L    &kp SEMI &kp SQT
+        &mt LSHIFT LPAR &kp Z &kp X &kp C    &kp V    &kp B    &mt LCTL LBKT &lt NAV ESC    &lt SYMBOLS TAB &mt RCTL RBKT &kp N    &kp M      &kp COMMA &kp DOT  &kp FSLH &mt RSHIFT RPAR
+                                    &kp C_PP &kp LALT &kp LGUI &kp SPACE     &mo SYMBOLS    &mo NAV         &kp RET       &kp BSPC &sl MACROS &kp C_MUTE
       >;
 
-      sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN>;
+      sensor-bindings = <&inc_dec_kp C_VOL_DN C_VOL_UP &inc_dec_kp LC(TAB) LC(LS(TAB))>;
     };
 
     // Math
     numpad_layer {
       bindings = <
-        &to DEFAULT  &none &none &none &none  &none                                    &none        &kp KP_N7 &kp KP_N8 &kp KP_N9 &none &none
-        &trans       &none &none &none &none  &none                                    &none        &kp KP_N4 &kp KP_N5 &kp KP_N6 &none &none
-        &trans       &none &none &none &none  &none  &trans &trans       &trans &trans &none        &kp KP_N1 &kp KP_N2 &kp KP_N3 &none &trans
-                                 &none &trans &trans &trans &none        &none  &trans &kp KP_ENTER &kp KP_N0 &kp KP_DOT
+        &to DEFAULT _____ _____ _____ _____ _____                             _____        &kp KP_N7 &kp KP_N8 &kp KP_N9 _____ _____
+        t____       _____ _____ _____ _____ _____                             _____        &kp KP_N4 &kp KP_N5 &kp KP_N6 _____ _____
+        t____       _____ _____ _____ _____ _____ t____ t____     t____ t____ _____        &kp KP_N1 &kp KP_N2 &kp KP_N3 _____ t____
+                                _____ t____ t____ t____ _____     _____ t____ &kp KP_ENTER &kp KP_N0 &kp KP_DOT
       >;
     };
 
     // Symbols
     symbol_layer {
       bindings = <
-        &none  &kp N1 &kp N2  &kp N3  &kp N4  &kp N5                                          &kp N6  &kp N7    &kp N8    &kp N9   &kp N0   &none
-        &trans &kp F1 &kp F2  &kp F3  &kp F4  &kp F5                                          &kp F6  &kp MINUS &kp EQUAL &kp LBKT &kp RBKT &kp DOT
-        &trans &kp F7 &kp F8  &kp F9  &kp F10 &kp F11 &trans &trans         &trans    &trans  &kp F12 &kp UNDER &kp PLUS  &kp DOT  &none    &trans
-                              &none   &trans  &trans  &trans &kp TILDE      &kp GRAVE &trans  &trans  &trans    &none
+        _____ &kp N1 &kp N2  &kp N3  &kp N4  &kp N5                                       &kp N6  &kp N7    &kp N8    &kp N9   &kp N0   _____
+        t____ &kp F1 &kp F2  &kp F3  &kp F4  &kp F5                                       &kp F6  &kp MINUS &kp EQUAL &kp LBKT &kp RBKT &kp DOT
+        t____ &kp F7 &kp F8  &kp F9  &kp F10 &kp F11 t____ t____          t____     t____ &kp F12 &kp UNDER &kp PLUS  &kp DOT  _____    t____
+                             _____   t____   t____   t____ &kp TILDE      &kp GRAVE t____ t____   t____     _____
       >;
     };
 
@@ -62,34 +74,34 @@
       /*                            KC_PGUP, _______, _______, _______, XXXXXXX, XXXXXXX, _______, _______, _______, KC_PGDN */
       // Mouse support is missing from the above one (QMK format).
       bindings = <
-        &none  &none &none &none     &kp DEL &kp BSPC                                &none    &none     &none     &none     &none &none
-        &trans &none &none &none     &kp RET &none                                   &kp LEFT &kp DOWN  &kp UP    &kp RIGHT &none &none
-        &trans &none &none &none     &none   &none  &trans &trans      &trans &trans &kp HOME &kp PG_DN &kp PG_UP &kp END   &none &trans
-                           &kp PG_UP &trans  &trans &trans &none       &none  &trans &trans   &trans    &kp PG_DN
+        _____ _____ _____ _____     &kp DEL &kp BSPC                           _____    _____     _____     _____     _____ _____
+        t____ _____ _____ _____     &kp RET _____                              &kp LEFT &kp DOWN  &kp UP    &kp RIGHT _____ _____
+        t____ _____ _____ _____     _____   _____ t____ t____      t____ t____ &kp HOME &kp PG_DN &kp PG_UP &kp END   _____ t____
+                          &kp PG_UP t____   t____ t____ _____      _____ t____ t____    t____     &kp PG_DN
       >;
     };
 
     // Utils
     utils_layer {
-        /* &none &none           &none           &none           &none           &none                                        &none    &kp C_MUTE &kp C_VOL_UP &none      &none &none */
-        /* &none &rgb_ug RGB_TOG &rgb_ug RGB_SAI &rgb_ug RGB_HUI &rgb_ug RGB_BRI &rgb_ug RGB_EFF                              &none    &kp C_PREV &kp C_PP     &kp C_NEXT &none &none */
-        /* &none &none           &rgb_ug RGB_SAD &rgb_ug RGB_HUD &rgb_ug RGB_BRD &rgb_ug RGB_EFR &none &none      &none &none &to MATH &none      &kp C_VOL_DN &none      &none &none */
-        /*                                               &none       &none       &none           &none &none      &none &none &none    &none      &none */
+        /* _____ _____           _____           _____           _____           _____                                        _____    &kp C_MUTE &kp C_VOL_UP _____      _____ _____ */
+        /* _____ &rgb_ug RGB_TOG &rgb_ug RGB_SAI &rgb_ug RGB_HUI &rgb_ug RGB_BRI &rgb_ug RGB_EFF                              _____    &kp C_PREV &kp C_PP     &kp C_NEXT _____ _____ */
+        /* _____ _____           &rgb_ug RGB_SAD &rgb_ug RGB_HUD &rgb_ug RGB_BRD &rgb_ug RGB_EFR _____ _____      _____ _____ &to MATH _____      &kp C_VOL_DN _____      _____ _____ */
+        /*                                               _____       _____       _____           _____ _____      _____ _____ _____    _____      _____ */
       bindings = <
-        &bt BT_CLR &bt BT_SEL 0 &bt BT_SEL 1 &bt BT_SEL 2 &bt BT_SEL 3 &bt BT_SEL 4                       &none    &kp C_MUTE &kp C_VOL_UP &none      &none &none
-        &none      &none        &none        &none        &bt BT_NXT   &bt BT_PRV                         &none    &kp C_PREV &kp C_PP     &kp C_NEXT &none &none
-        &none      &none        &none        &none        &none        &none &none &none      &none &none &to MATH &none      &kp C_VOL_DN &none      &none &none
-                                             &none        &none        &none &none &none      &none &none &none    &none      &none
+        &bt BT_CLR        &bt BT_SEL 0 &bt BT_SEL 1 &bt BT_SEL 2 &bt BT_SEL 3 &bt BT_SEL 4                       _____    &kp C_MUTE &kp C_VOL_UP _____      _____ _____
+        &ext_power EP_TOG _____        _____        _____        &bt BT_NXT   &bt BT_PRV                         _____    &kp C_PREV &kp C_PP     &kp C_NEXT _____ _____
+        _____             _____        _____        _____        _____        _____ _____ _____      _____ _____ &to MATH _____      &kp C_VOL_DN _____      _____ _____
+                                                    _____        _____        _____ _____ _____      _____ _____ _____    _____      _____
       >;
     };
 
     // Macros
     macros_layer {
       bindings = <
-        &none &none &none &none &kp LG(LS(N4)) &kp LG(LS(N5))                      &none &none &none &none &none &none
-        &none &none &none &none &none          &none                               &none &none &none &none &none &none
-        &none &none &none &none &none          &none &none &none       &none &none &none &none &none &none &none &none
-                          &none &none          &none &none &none       &none &none &none &none &none
+        _____ _____ _____ _____ &kp LG(LS(N4)) &kp LG(LS(N5))                      _____ _____ _____ _____ _____ _____
+        _____ _____ _____ _____ _____          _____                               _____ _____ _____ _____ _____ _____
+        _____ _____ _____ _____ _____          _____ _____ _____       _____ _____ _____ _____ _____ _____ _____ _____
+                          _____ _____          _____ _____ _____       _____ _____ _____ _____ _____
       >;
     };
   };
