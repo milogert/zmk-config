@@ -88,7 +88,7 @@
         /* _____ _____           &rgb_ug RGB_SAD &rgb_ug RGB_HUD &rgb_ug RGB_BRD &rgb_ug RGB_EFR _____ _____      _____ _____ &to MATH _____      &kp C_VOL_DN _____      _____ _____ */
         /*                                               _____       _____       _____           _____ _____      _____ _____ _____    _____      _____ */
       bindings = <
-        &bt BT_CLR        &bt BT_SEL 0 &bt BT_SEL 1 &bt BT_SEL 2 &bt BT_SEL 3 &bt BT_SEL 4                       _____    &kp C_MUTE &kp C_VOL_UP _____      _____ _____
+        &bt BT_CLR        &bt BT_SEL 0 &bt BT_SEL 1 &bt BT_SEL 2 &bt BT_SEL 3 &bt BT_SEL 4                       _____    &kp C_MUTE &kp C_VOL_UP _____      _____ &bt BT_CLR
         &ext_power EP_TOG _____        _____        _____        &bt BT_NXT   &bt BT_PRV                         _____    &kp C_PREV &kp C_PP     &kp C_NEXT _____ _____
         _____             _____        _____        _____        _____        _____ _____ _____      _____ _____ &to MATH _____      &kp C_VOL_DN _____      _____ _____
                                                     _____        _____        _____ _____ _____      _____ _____ _____    _____      _____
